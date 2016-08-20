@@ -1,0 +1,20 @@
+merchantId=>216 
+price=>23 
+orderId=>110 
+email=>lox@exemple.com 
+action=>payout 
+customer_phone=>+70000000000 
+customer_email=>lox@exemple.com 
+transaction=>e416027cc76847c28747334e1d62029a 
+object_type=>transaction 
+status=>failed 
+payment_system=>mandarinpayv1 
+sandbox=>true 
+cb_customer_creditcard_number=>448591XXXXXX4384 
+a385b6f5-827d-45c4-aaae-903d467f95d7=>c5febf9a-fdaa-4a30-981b-9030d894da47 
+sign=>ea4322186b26d1aa60ec011f801cf84d14699e5da3ed74118e5a9423b71dd619 
+Host=>mandarinko 
+Connection=>close 
+Content-Length=>452 
+Accept=>*/* 
+Content-Type=>application/x-www-form-urlencoded 
