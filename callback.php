@@ -6,14 +6,9 @@ spl_autoload_register(function ($class_name) {
 $testform = new NewPay();
 $calc_sigh = $testform->check_sign($_POST);
 if ($calc_sigh == true) {
-//    $file = fopen('text.txt', 'w+');
-//    foreach ($_POST as $k => $v) {
-//        fwrite($file, $k . '=>' . $v . "\r \n");
-//    }
-//    foreach ($heeader as $k => $v) {
-//        fwrite($file, $k . '=>' . $v . "\r \n");
-//    }
-//    fclose($file);
+//   $file = fopen('text.txt', 'w+');
+//   fwrite($file,$_POST);
+//   fclose($file);
     $new_index = new IndexForm('my_database');
     $new_index->updtade_status($_POST);
 }

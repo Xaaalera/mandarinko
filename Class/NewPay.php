@@ -10,8 +10,6 @@ class NewPay
     function __construct($merchantid = "216",
                          $secret = "123321",
                          $base_url = "https://secure.mandarinpay.com/"
-
-
     )
 
     {
@@ -54,7 +52,7 @@ class NewPay
             $form = $form . '<input type="hidden" name="' . $key . '" value="' . htmlspecialchars($val) . '"/>' . "\n";
         }
         $form = $form . '<input type="hidden" name="sign" value="' . $sign . '"/>';
-        $form = $form . "<input type=\"submit\" value=\"Оплатить\" />";
+        $form = $form . "<input type=\"submit\" id=\"button_send_form\" value=\"Оплатить\" />";
         $form = $form . "</form>";
         return $form;
     }
@@ -103,6 +101,39 @@ class NewPay
         return $result;
 
     }
+
+        private function gen_preauth($orderid, $price)
+    { //generate  array payment
+        $array["payment"] = array("orderId" => $orderid,
+            "action" => "preauth",
+            "price" => $price);
+        return $array;
+    }
+
+        public function pay_preauth($orderid, $price,$costumerinfo)
+    {
+        $payment = $this->gen_preauth($orderid, $price);
+        $costumerinfo = $this->to_array_costumerinfo($costumerinfo);
+        $array_content = array_merge($payment, $costumerinfo);
+              // $payment["target"]=array('card'=>'0eb51e74-e704-4c36-b5cb-8f0227621518');
+        $json_content = json_encode($array_content);
+        $url_transaction = $this->base_url . "api/transactions";
+        $ch = curl_init($url_transaction);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_content);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Content-Type: application/json",
+            "X-Auth:" . $this->gen_auth(),
+        ));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($ch);
+        if (curl_errno($ch))
+            throw new Exception(curl_error($ch));
+        $result = json_decode($result);
+        print_r($result);
+        return $result;
+
+    }
+
 
     private function gen_payout($orderid, $price)
     { //generate  array payout

@@ -115,6 +115,13 @@ echo "</table>";
                                         Выплата по известному номеру карты
                                     </label>
                                 </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="gridRadios" class="card_preauth" id="gridRadios7"
+                                               value="option7">
+                                       Предавторизация
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row" id="cheks_but">
